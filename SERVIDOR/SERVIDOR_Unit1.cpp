@@ -12,19 +12,24 @@ TForm1 *Form1;
 int pH_agua=0, temp_jsimple=0, temp_jterminado=0, presion_tanqueC=0, pH_gaseosa=0;
 
 //pHagua
-int MAXpHa=0,minpHa=0;
+int MAXpHa=0;
+int minpHa=0;
 float randpHa=0;
 //temp_jsimple
-int MAXtempjs=0,mintempjs=0;
+int MAXtempjs=0;
+int mintempjs=0;
 float randtempjs=0;
 //temp_jterminado
-int MAXtempjt=0,mintempjt=0;
+int MAXtempjt=0;
+int mintempjt=0;
 float randtempjt=0;
 //presion_tanqueC
-int MAXprest=0,minprest=0;
+int MAXprest=0;
+int minprest=0;
 float randprest=0;
-//pH_gaseosa
-int MAXpHg=0,minpHg=0;
+//pH_gaseos
+int MAXpHg=0;
+int minpHg=0;
 float randpHg=0;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -55,15 +60,31 @@ DdeServerItem4->ServerConv = DdeServerConv1;
 DdeServerItem5->ServerConv = DdeServerConv1;
 // ARRANQUE DE LA SECUENCIA
 Timer1->Enabled = true;
+//Tomo los valores de los edit
+//pHagua
+MAXpHa=atoi(Edit2->Text.c_str());
+minpHa=atoi(Edit1->Text.c_str());
+
+//temp_jsimple
+MAXtempjs=atoi(Edit4->Text.c_str());
+mintempjs=atoi(Edit3->Text.c_str());
+//temp_jterminado
+MAXtempjt=atoi(Edit6->Text.c_str());
+mintempjt=atoi(Edit5->Text.c_str());
+//presion_tanqueC
+MAXprest=atoi(Edit8->Text.c_str());
+minprest=atoi(Edit7->Text.c_str());
+//pH_gaseos
+MAXpHg=atoi(Edit10->Text.c_str());
+minpHg=atoi(Edit9->Text.c_str());
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Timer1Timer(TObject *Sender)
 {
-MAXpHa=8;
-minpHa=5;
   //INCREMENTO LA VARIABLE pH del agua
   //ACTUALIZO LA INTERFAZ
-  randpHa=minpHa+random(MAXpHa-minpHa+27)*0.1;   //el ph va a ser de agua siempre
+  randpHa=minpHa+random(MAXpHa-minpHa)+1-random(10)*0.1;
+  //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
   Label1->Caption= FloatToStr(randpHa);
 
   //ACTUALIZO EL VALOR EN EL ITEM
@@ -75,15 +96,13 @@ minpHa=5;
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Timer2Timer(TObject *Sender)
 {
-MAXtempjs=80;
-mintempjs=90;
-
  //APAGO EL TIMER 2
   Timer2->Enabled=false;
 
   //INCREMENTO LA VARIABLE temperatura jarabe
   //ACTUALIZO LA INTERFAZ
-  randtempjs=mintempjs+random(MAXtempjs-mintempjs+90)*0.1;
+  randtempjs=mintempjs+random(MAXtempjs-mintempjs)+1-random(10)*0.1;
+  //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
   Label2->Caption = FloatToStr(randtempjs);
 
   //ACTUALIZO EL VALOR EN EL ITEM
@@ -95,15 +114,13 @@ mintempjs=90;
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Timer3Timer(TObject *Sender)
 {
-MAXtempjt=10;
-mintempjt=3;
-
  //APAGO EL TIMER 3
   Timer3->Enabled=false;
 
   //INCREMENTO LA VARIABLE TEMPERATURA
   //ACTUALIZO LA INTERFAZ
-  randtempjt=mintempjt+random(MAXtempjt-mintempjt+27)*0.1;
+  randtempjt=mintempjt+random(MAXtempjt-mintempjt)+1-random(10)*0.1;
+  //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
   Label3->Caption = FloatToStr(randtempjt);
 
   //ACTUALIZO EL VALOR EN EL ITEM
@@ -115,15 +132,13 @@ mintempjt=3;
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Timer4Timer(TObject *Sender)
 {
-MAXprest=500;
-minprest=350;
-
  //APAGO EL TIMER 4
   Timer4->Enabled=false;
 
   //INCREMENTO LA VARIABLE presion tanque
   //ACTUALIZO LA INTERFAZ
-  randprest=minprest+random(MAXprest-minprest+1350)*0.1;
+  randprest=minprest+random(MAXprest-minprest)+1-random(10)*0.1;
+  //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
   Label4->Caption = FloatToStr(randprest);
 
   //ACTUALIZO EL VALOR EN EL ITEM
@@ -135,18 +150,81 @@ minprest=350;
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Timer5Timer(TObject *Sender)
 {
-MAXpHg=6;
-minpHg=4;
-
- //APAGO EL TIMER 5
+//APAGO EL TIMER 5
   Timer5->Enabled=false;
 
   //INCREMENTO LA VARIABLE TEMPERATURA
   //ACTUALIZO LA INTERFAZ
-  randpHg=minpHg+random(MAXpHg-minpHg+20)*0.1;
+  randpHg=minpHg+random(MAXpHg-minpHg)+1-random(10)*0.1;
+  //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
   Label5->Caption = FloatToStr(randpHg);
 
   //ACTUALIZO EL VALOR EN EL ITEM
   DdeServerItem5->Text = Label5->Caption;
 }
 //---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+Application->Terminate();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Edit1Change(TObject *Sender)
+{
+minpHa=atoi(Edit1->Text.c_str());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit2Change(TObject *Sender)
+{
+MAXpHa=atoi(Edit2->Text.c_str());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit3Change(TObject *Sender)
+{
+mintempjs=atoi(Edit3->Text.c_str());        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit4Change(TObject *Sender)
+{
+MAXtempjs=atoi(Edit4->Text.c_str());        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit5Change(TObject *Sender)
+{
+mintempjt=atoi(Edit5->Text.c_str());        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit6Change(TObject *Sender)
+{
+MAXtempjt=atoi(Edit6->Text.c_str());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit7Change(TObject *Sender)
+{
+minprest=atoi(Edit7->Text.c_str());        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit8Change(TObject *Sender)
+{
+MAXprest=atoi(Edit8->Text.c_str());        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit9Change(TObject *Sender)
+{
+minpHg=atoi(Edit9->Text.c_str());        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit10Change(TObject *Sender)
+{
+MAXpHg=atoi(Edit10->Text.c_str());
+}
+//---------------------------------------------------------------------------
+
