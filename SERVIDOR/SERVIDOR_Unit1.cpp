@@ -85,7 +85,7 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
   //ACTUALIZO LA INTERFAZ
   randpHa=minpHa+random(MAXpHa-minpHa)+1-random(10)*0.1;
   //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
-  Label1->Caption= FloatToStr(randpHa);
+  Label1->Caption= FloatToStrF(randpHa,ffNumber,20,2);
 
   //ACTUALIZO EL VALOR EN EL ITEM
   DdeServerItem1->Text = Label1->Caption;
@@ -103,7 +103,7 @@ void __fastcall TForm1::Timer2Timer(TObject *Sender)
   //ACTUALIZO LA INTERFAZ
   randtempjs=mintempjs+random(MAXtempjs-mintempjs)+1-random(10)*0.1;
   //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
-  Label2->Caption = FloatToStr(randtempjs);
+  Label2->Caption = FloatToStrF(randtempjs,ffNumber,20,2);
 
   //ACTUALIZO EL VALOR EN EL ITEM
   DdeServerItem2->Text = Label2->Caption;
@@ -121,7 +121,7 @@ void __fastcall TForm1::Timer3Timer(TObject *Sender)
   //ACTUALIZO LA INTERFAZ
   randtempjt=mintempjt+random(MAXtempjt-mintempjt)+1-random(10)*0.1;
   //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
-  Label3->Caption = FloatToStr(randtempjt);
+  Label3->Caption = FloatToStrF(randtempjt,ffNumber,20,2);
 
   //ACTUALIZO EL VALOR EN EL ITEM
   DdeServerItem3->Text = Label3->Caption;
@@ -139,7 +139,7 @@ void __fastcall TForm1::Timer4Timer(TObject *Sender)
   //ACTUALIZO LA INTERFAZ
   randprest=minprest+random(MAXprest-minprest)+1-random(10)*0.1;
   //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
-  Label4->Caption = FloatToStr(randprest);
+  Label4->Caption = FloatToStrF(randprest,ffNumber,20,2);
 
   //ACTUALIZO EL VALOR EN EL ITEM
   DdeServerItem4->Text = Label4->Caption;
@@ -157,7 +157,7 @@ void __fastcall TForm1::Timer5Timer(TObject *Sender)
   //ACTUALIZO LA INTERFAZ
   randpHg=minpHg+random(MAXpHg-minpHg)+1-random(10)*0.1;
   //random(10)*0.1 a lo suma entrega 1, -1 elimina el posible desborde
-  Label5->Caption = FloatToStr(randpHg);
+  Label5->Caption = FloatToStrF(randpHg,ffNumber,20,2);
 
   //ACTUALIZO EL VALOR EN EL ITEM
   DdeServerItem5->Text = Label5->Caption;
